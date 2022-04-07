@@ -132,3 +132,7 @@ dmypy.json
 *.cfg
 bin/
 lib64/
+
+audios/
+converteds/
+status/
