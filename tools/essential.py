@@ -15,7 +15,7 @@ class Essential(EssentialInterface):
             for file in listdir(dir):
                 remove(f'{dir}/{file}')
 
-dirs_list = ['audios', 'converteds', 'status']
+dirs_list = ['audios', 'static', 'status']
 essential = Essential()
 essential.create_dirs(dirs_list)
 essential.delete_old_files(dirs_list)
