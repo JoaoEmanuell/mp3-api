@@ -8,4 +8,4 @@ class Conversor(ConversorInterface):
     def convert(cls, audio : str) -> None:
         clip = AudioFileClip(audio)
         filename = audio.split("/")[-1].replace(".mp3", "")
-        clip.write_audiofile(f'{Path().absolute()}/converteds/{filename}.mp3')
+        clip.write_audiofile(f'{Path().absolute()}/static/{filename}.mp3')

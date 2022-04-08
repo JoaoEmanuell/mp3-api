@@ -23,8 +23,11 @@ def upload_audio() :
     return {'message': 'Audio uploaded successfully'}
 
 @api.route('/converteds/<filename>')
-def get_converted_audio(filename) :
+def get_converted_audio(filename : str) :
     if environ['FLASK_ENV'] == 'prod' :
         return f'<audio controls src="/static/{filename}"></audio>'
     else : 
-        return jsonify({'audio' : f'http://127.0.0.1:5000/static/{filename}'})
+        return jsonify({
+                'audio' : f'http://127.0.0.1:5000/static/{filename}', 
+                'filename' : f'{filename.rsplit("/")[-1]}'
+            })
