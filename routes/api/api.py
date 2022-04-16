@@ -41,7 +41,7 @@ def get_converted_audio(filename : str) :
     else : 
         return jsonify({
                 'audio' : f'http://127.0.0.1:5000/static/{filename}', 
-                'filename' : f'{filename.rsplit("/")[-1]}'
+                'filename' : f'{filename.rsplit("/")[-1][8::]}'
             })
 
 @api.route('/status/<hash>')
@@ -49,7 +49,7 @@ def get_status_file(hash : str) :
 
     path = f'{Path().absolute()}/status/'
     hash = hash.replace('.mp3', '')
-    
+
     with open(f'{path}{hash}.json', 'r') as f :
         file = f.read()
         print(f'File : {file}')
