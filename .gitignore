@@ -136,3 +136,4 @@ lib64/
 audios/
 static/
 status/
+tmp.*

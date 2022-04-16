@@ -5,6 +5,7 @@ from pathlib import Path
 from werkzeug.utils import secure_filename
 from threading import Thread
 from os import environ
+from json import loads
 
 from .source import Conversor, Hash
 
@@ -42,3 +43,17 @@ def get_converted_audio(filename : str) :
                 'audio' : f'http://127.0.0.1:5000/static/{filename}', 
                 'filename' : f'{filename.rsplit("/")[-1]}'
             })
+
+@api.route('/status/<hash>')
+def get_status_file(hash : str) :
+
+    path = f'{Path().absolute()}/status/'
+    hash = hash.replace('.mp3', '')
+    
+    with open(f'{path}{hash}.json', 'r') as f :
+        file = f.read()
+        print(f'File : {file}')
+        if file == '':
+            return jsonify({'status' : False})
+        else :
+            return jsonify(loads(file))
