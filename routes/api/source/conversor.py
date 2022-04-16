@@ -1,4 +1,4 @@
-from moviepy.editor import AudioFileClip
+from .moviepy import AudioFileClip
 from pathlib import Path
 
 from .interfaces import ConversorInterface
