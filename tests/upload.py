@@ -9,5 +9,8 @@ def upload_audio() -> dict:
 
 def test_answer():
     r = upload_audio()
+    print(r)
     assert type(r) == dict
     assert r['message'] == 'Audio uploaded successfully'
+
+test_answer()
