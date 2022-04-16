@@ -1,1 +1,2 @@
 from .conversor_interface import ConversorInterface
+from .hash_interface import HashInterface
