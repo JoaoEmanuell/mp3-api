@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from threading import Thread
 from os import environ
 
-from .source import Conversor
+from .source import Conversor, Hash
 
 api = Blueprint('api', __name__)
 
@@ -17,10 +17,21 @@ def index() :
 @api.route('/upload/', methods=['POST'])
 def upload_audio() :
     if request.method == 'POST':
-        for file in request.files.getlist("file"): # getlist["file"] retorna uma lista que contem os arquivos, enviados.
-            file.save(f'{Path().absolute()}/audios/{secure_filename(file.filename)}')
-        Thread(target=Conversor.convert, args=(f'{Path().absolute()}/audios/{secure_filename(file.filename)}',)).start()
-    return {'message': 'Audio uploaded successfully'}
+        file = request.files["file"]
+
+        path = f'{Path().absolute()}/audios/'
+
+        hash = Hash.generate_random_hash()
+
+        filename = f'{hash}{secure_filename(file.filename)}'
+
+        file.save(f'{path}{filename}')
+
+        Thread(target=Conversor.convert, args=(f'{path}{filename}',)).start()
+    return {
+        'message': 'Audio uploaded successfully',
+        'hash' : f'{filename}'
+        }
 
 @api.route('/converteds/<filename>')
 def get_converted_audio(filename : str) :
