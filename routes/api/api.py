@@ -4,8 +4,8 @@ from flask import request
 from pathlib import Path
 from werkzeug.utils import secure_filename
 from threading import Thread
-from os import environ
 from json import loads
+from urllib.parse import urlparse
 
 from .source import Conversor, Hash
 
@@ -26,23 +26,27 @@ def upload_audio() :
 
         filename = f'{hash}{secure_filename(file.filename)}'
 
+        if filename == '' :
+            return jsonify({'message' : 'No file selected'})
+
         file.save(f'{path}{filename}')
 
         Thread(target=Conversor.convert, args=(f'{path}{filename}',)).start()
-    return {
+    return jsonify({
         'message': 'Audio uploaded successfully',
         'hash' : f'{filename}'
-        }
+        })
 
 @api.route('/converteds/<filename>')
 def get_converted_audio(filename : str) :
-    if environ['FLASK_ENV'] == 'prod' :
-        return f'<audio controls src="/static/{filename}"></audio>'
-    else : 
-        return jsonify({
-                'audio' : f'http://127.0.0.1:5000/static/{filename}', 
-                'filename' : f'{filename.rsplit("/")[-1][8::]}'
-            })
+
+    url_base = urlparse(request.base_url)[0:2]
+    url_base = f'{url_base[0]}://{url_base[1]}'
+
+    return jsonify({
+        'audio' : f'{url_base}/static/{filename}', 
+        'filename' : f'{filename.rsplit("/")[-1][8:]}'
+    })
 
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
@@ -52,7 +56,7 @@ def get_status_file(hash : str) :
 
     with open(f'{path}{hash}.json', 'r') as f :
         file = f.read()
-        print(f'File : {file}')
+
         if file == '':
             return jsonify({'status' : False})
         else :
