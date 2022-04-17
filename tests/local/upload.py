@@ -13,24 +13,14 @@ def get_status(hash : str) -> dict :
     r : dict = get(f'{url}{hash}').json()
     return r
 
-def test_answer() :
+def upload_main() -> dict :
     r = upload_audio()
 
     print(r)
     assert type(r) == dict
     assert r['message'] == 'Audio uploaded successfully'
+    return r
 
-    sleep(2)
-    while True :
-        data = get_status(r['hash'])
 
-        try :
-            print(f'Data : {data}')
-            if data['status'] == True :
-                break
-        except TypeError as erro:
-            print(f"Data Error {erro}\nData : {data}")
-            pass
-        sleep(3)
-
-test_answer()
+if __name__ == '__main__' :
+    upload_main()

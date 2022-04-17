@@ -29,9 +29,12 @@ def upload_audio() :
         if filename == '' :
             return jsonify({'message' : 'No file selected'})
 
-        file.save(f'{path}{filename}')
+        else :
 
-        Thread(target=Conversor.convert, args=(f'{path}{filename}',)).start()
+            file.save(f'{path}{filename}')
+
+            Thread(target=Conversor.convert, args=(f'{path}{filename}',)).start()
+
     return jsonify({
         'message': 'Audio uploaded successfully',
         'hash' : f'{filename}'

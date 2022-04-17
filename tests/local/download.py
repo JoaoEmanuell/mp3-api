@@ -10,7 +10,8 @@ def download_file(url : str) -> bytes:
     page = urlopen(req).read()
     return page
 
-r = get('http://127.0.0.1:5000/api/converteds/Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3').json()
-print(r)
-file = download_file(r['audio'])
-save_file(r['filename'], 'audios' , file)
+if __name__ == '__main__' :
+    r = get('http://127.0.0.1:5000/api/converteds/Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3').json()
+    print(r)
+    file = download_file(r['audio'])
+    save_file(r['filename'], 'audios' , file)
