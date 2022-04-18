@@ -1,2 +1,3 @@
 from .conversor_interface import ConversorInterface
 from .hash_interface import HashInterface
+from .factory_interface import FactoryInterface

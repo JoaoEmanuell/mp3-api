@@ -7,9 +7,12 @@ from threading import Thread
 from json import loads
 from urllib.parse import urlparse
 
-from .source import Conversor, Hash
+from .source import Factory
+from .source.interfaces import HashInterface, ConversorInterface
 
 api = Blueprint('api', __name__)
+
+Fac = Factory()
 
 @api.route('/')
 def index() :
@@ -22,6 +25,8 @@ def upload_audio() :
 
         path = f'{Path().absolute()}/audios/'
 
+        Hash : HashInterface = Fac.get_representative(HashInterface)
+
         hash = Hash.generate_random_hash()
 
         filename = f'{hash}{secure_filename(file.filename)}'
@@ -30,6 +35,8 @@ def upload_audio() :
             return jsonify({'message' : 'No file selected'})
 
         else :
+
+            Conversor : ConversorInterface = Fac.get_representative(ConversorInterface)
 
             file.save(f'{path}{filename}')
 
