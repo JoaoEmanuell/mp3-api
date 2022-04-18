@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractclassmethod
 
 class ConversorInterface(ABC) :
-    @abstractmethod
-    def convert(self, audio : str) -> None:
+    @abstractclassmethod
+    def convert(cls, audio : str) -> None:
         raise NotImplementedError
