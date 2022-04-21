@@ -64,10 +64,15 @@ def get_status_file(hash : str) :
     path = f'{Path().absolute()}/status/'
     hash = hash.replace('.mp3', '')
 
-    with open(f'{path}{hash}.json', 'r') as f :
-        file = f.read()
+    try : 
 
-        if file == '':
-            return jsonify({'status' : False})
-        else :
-            return jsonify(loads(file))
+        with open(f'{path}{hash}.json', 'r') as f :
+            file = f.read()
+
+            if file == '':
+                return jsonify({'status' : False})
+            else :
+                return jsonify(loads(file))
+
+    except FileNotFoundError :
+        return jsonify({'status' : False})
