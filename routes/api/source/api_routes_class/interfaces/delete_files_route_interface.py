@@ -12,12 +12,25 @@ class DeleteFilesRouteInterface(ABC) :
     """    
 
     @abstractmethod
-    def __init__(self, hash : str) -> None :
+    def __init__(self, hash : str = None) -> None :
         """
         Initialize the class
 
         Args:
             hash (str): Hash provide by /upload/ route
+
+        Raises:
+            NotImplementedError: NotImplementedError
+        """        
+        raise NotImplementedError()
+
+    def set_atributes(self, **kwargs) -> None :
+        """
+        Set atributes
+
+        Args:
+            **kwargs (dict): Dict of atributes
+            attributes are defined in __init__
 
         Raises:
             NotImplementedError: NotImplementedError
