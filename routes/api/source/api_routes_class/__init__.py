@@ -1,1 +1,1 @@
-from .interfaces import DeleteFilesRouteInterface
+from .delete_files_route import DeleteFilesRoute
