@@ -31,4 +31,3 @@ class Factory(FactoryInterface) :
                 print(error)
 
         raise ValueError(f'{interface} has no representative')
-

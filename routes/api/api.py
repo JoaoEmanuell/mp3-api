@@ -11,7 +11,6 @@ from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
 
 from .source.api_routes_class.interfaces import DeleteFilesRouteInterface
-from .source.api_routes_class import DeleteFilesRoute
 
 api = Blueprint('api', __name__)
 
@@ -88,4 +87,6 @@ def delete_files(hash : str) :
     )
 
     delete_files_class.set_atributes(hash = hash)
-    delete_files_class.delete_files()
+    response = delete_files_class.delete_files()
+
+    return jsonify(response)

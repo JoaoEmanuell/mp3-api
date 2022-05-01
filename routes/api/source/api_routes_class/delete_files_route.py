@@ -3,7 +3,7 @@ from ..atributes_manage import AtributeClass
 
 from pathlib import Path
 from os import remove
-from typing import Tuple
+from typing import Dict, Tuple
 
 class DeleteFilesRoute(DeleteFilesRouteInterface) :
     def __init__(self, hash: str = None) -> None :
@@ -21,10 +21,12 @@ class DeleteFilesRoute(DeleteFilesRouteInterface) :
             if key_tuple[0] in kwargs :
                 AtributeClass.setattr(self, f'__{key_tuple[0]}', kwargs[key_tuple[0]])
 
-    def delete_files(self) -> None:
+    def delete_files(self) -> Dict[str, str] :
+        self.__hash = self.__hash.replace('.mp3', '')
         self.private__delete_converted_file()
         self.private__delete_json()
         self.private__delete_original_file()
+        return {'message' : 'Files deleted successfully'}
 
     def private__delete_converted_file(self) -> None :
         try :

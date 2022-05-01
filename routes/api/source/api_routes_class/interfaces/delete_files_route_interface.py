@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Dict
 
 class DeleteFilesRouteInterface(ABC) :
     """
@@ -38,7 +39,7 @@ class DeleteFilesRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def delete_files(self) -> None :
+    def delete_files(self) -> Dict[str, str]:
         """
         Delete files from the server.
         Claim the private functions : delete json, original file and converted files.
