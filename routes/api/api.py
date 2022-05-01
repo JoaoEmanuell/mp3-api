@@ -10,6 +10,9 @@ from urllib.parse import urlparse
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
 
+from .source.api_routes_class.interfaces import DeleteFilesRouteInterface
+from .source.api_routes_class import DeleteFilesRoute
+
 api = Blueprint('api', __name__)
 
 Fac = Factory()
@@ -76,3 +79,13 @@ def get_status_file(hash : str) :
 
     except FileNotFoundError :
         return jsonify({'status' : False})
+
+@api.route('/delete/<hash>')
+def delete_files(hash : str) :
+    
+    delete_files_class : DeleteFilesRouteInterface = Fac.get_representative(
+        DeleteFilesRouteInterface
+    )
+
+    delete_files_class.set_atributes(hash = hash)
+    delete_files_class.delete_files()
