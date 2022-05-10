@@ -12,25 +12,25 @@ def test_answer() :
     assert isinstance(fac, FactoryInterface)
 
     # Is instance 
-
-    assert isinstance(fac.get_representative(HashInterface), Hash)
-    assert isinstance(fac.get_representative(ConversorInterface), Conversor)
+    print(fac.get_representative(HashInterface)())
+    assert isinstance(fac.get_representative(HashInterface)(), Hash)
+    assert isinstance(fac.get_representative(ConversorInterface)(), Conversor)
 
     # Is not instance
 
-    assert not isinstance(fac.get_representative(ConversorInterface), Hash)
+    assert not isinstance(fac.get_representative(ConversorInterface)(), Hash)
 
     ## Delete Files Route
 
-    assert isinstance(fac.get_representative(DeleteFilesRouteInterface), DeleteFilesRoute)
+    assert isinstance(fac.get_representative(DeleteFilesRouteInterface)(), DeleteFilesRoute)
 
     # Is not instance
     
     assert not isinstance(
-        fac.get_representative(DeleteFilesRouteInterface), Hash)
+        fac.get_representative(DeleteFilesRouteInterface)(), Hash)
 
     delete_files_route : DeleteFilesRouteInterface = fac.get_representative(
-        DeleteFilesRouteInterface)
+        DeleteFilesRouteInterface)(hash = '123')
 
     delete_files_route.set_atributes(hash = '123')
 
