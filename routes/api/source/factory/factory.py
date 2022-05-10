@@ -25,8 +25,8 @@ class Factory(FactoryInterface) :
 
         for representative in self.__representatives :
             try : 
-                if isinstance(representative(), interface) :
-                    return representative()
+                if issubclass(representative, interface) :
+                    return representative
             except TypeError as error:
                 print(error)
 

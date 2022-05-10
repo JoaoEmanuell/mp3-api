@@ -10,9 +10,9 @@ class DeleteFilesRoute(DeleteFilesRouteInterface) :
         self.__hash = hash
         self.__path = Path().absolute()
 
-    def set_atributes(self, *args, **kwargs) -> None :
+    def set_atributes(self, **kwargs) -> None :
 
-        keys : Tuple[str, type] = (
+        keys : Tuple[Tuple[str, type]] = (
             ('hash', str), 
         )
 
