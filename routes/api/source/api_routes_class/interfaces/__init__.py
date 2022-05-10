@@ -1,1 +1,2 @@
 from .delete_files_route_interface import DeleteFilesRouteInterface
+from .upload_audio_route_interface import UploadAudioRouteInterface

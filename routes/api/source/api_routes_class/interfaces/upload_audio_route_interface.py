@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractclassmethod
 from flask import request
 
 from ....source.interfaces import ConversorInterface
@@ -13,8 +13,17 @@ class UploadAudioRouteInterface(ABC) :
         NotImplementedError: NotImplementedError
     """    
 
-    @abstractmethod
-    def save_file(path : str, filename : str, file : request) -> None :
+    @abstractclassmethod
+    def set_atributes(cls, **kwargs) -> None :
+        """set_atributes
+
+        Raises:
+            NotImplementedError: NotImplementedError
+        """
+        raise NotImplementedError()
+
+    @abstractclassmethod
+    def save_file(cls, path : str, filename : str, file : request) -> None :
         """save_file
 
         Args:
@@ -27,8 +36,8 @@ class UploadAudioRouteInterface(ABC) :
         """        
         raise NotImplementedError()
 
-    @abstractmethod
-    def start_conversion(conversor : ConversorInterface, path : str) -> None :
+    @abstractclassmethod
+    def start_conversion(cls, conversor : ConversorInterface, path : str, filename : str) -> None :
         """start_conversion
 
         Args:
