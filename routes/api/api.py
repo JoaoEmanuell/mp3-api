@@ -28,11 +28,11 @@ def upload_audio() :
 
         path = f'{Path().absolute()}/audios/'
 
-        hash = HashInterface = Fac.get_representative(HashInterface)().generate_random_hash()
+        hash : HashInterface = Fac.get_representative(HashInterface)().generate_random_hash()
 
         filename = f'{hash}{secure_filename(file.filename)}'
 
-        upload_audio_class : UploadAudioRouteInterface = Fac.get_representative(UploadAudioRouteInterface)
+        upload_audio_class : UploadAudioRouteInterface = Fac.get_representative(UploadAudioRouteInterface)()
 
         if filename == '' :
             return jsonify({'message' : 'No file selected'})

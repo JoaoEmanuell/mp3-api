@@ -14,7 +14,7 @@ class UploadAudioRouteInterface(ABC) :
     """    
 
     @abstractclassmethod
-    def set_atributes(cls, **kwargs) -> None :
+    def set_atributes(self, **kwargs) -> None :
         """set_atributes
 
         Raises:
@@ -23,7 +23,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractclassmethod
-    def save_file(cls, path : str, filename : str, file : request) -> None :
+    def save_file(self, path : str, filename : str, file : request) -> None :
         """save_file
 
         Args:
@@ -37,7 +37,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractclassmethod
-    def start_conversion(cls, conversor : ConversorInterface, path : str, filename : str) -> None :
+    def start_conversion(self, conversor : ConversorInterface, path : str, filename : str) -> None :
         """start_conversion
 
         Args:
