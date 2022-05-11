@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
 
-from .source.api_routes_class.interfaces import DeleteFilesRouteInterface
+from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface
 
 api = Blueprint('api', __name__)
 
@@ -23,15 +23,16 @@ def index() :
 @api.route('/upload/', methods=['POST'])
 def upload_audio() :
     if request.method == 'POST':
+
         file = request.files["file"]
 
         path = f'{Path().absolute()}/audios/'
 
-        Hash : HashInterface = Fac.get_representative(HashInterface)
-
-        hash = Hash.generate_random_hash()
+        hash = HashInterface = Fac.get_representative(HashInterface)().generate_random_hash()
 
         filename = f'{hash}{secure_filename(file.filename)}'
+
+        upload_audio_class : UploadAudioRouteInterface = Fac.get_representative(UploadAudioRouteInterface)
 
         if filename == '' :
             return jsonify({'message' : 'No file selected'})
@@ -40,9 +41,9 @@ def upload_audio() :
 
             Conversor : ConversorInterface = Fac.get_representative(ConversorInterface)
 
-            file.save(f'{path}{filename}')
+            upload_audio_class.save_file(path, filename, file)
 
-            Thread(target=Conversor.convert, args=(f'{path}{filename}',)).start()
+            upload_audio_class.start_conversion(Conversor, path, filename)
 
     return jsonify({
         'message': 'Audio uploaded successfully',
@@ -84,7 +85,7 @@ def delete_files(hash : str) :
     
     delete_files_class : DeleteFilesRouteInterface = Fac.get_representative(
         DeleteFilesRouteInterface
-    )
+    )()
 
     delete_files_class.set_atributes(hash = hash)
     response = delete_files_class.delete_files()

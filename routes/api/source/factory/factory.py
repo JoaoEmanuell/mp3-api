@@ -8,7 +8,7 @@ from abc import ABC
 from ..interfaces import FactoryInterface
 from ..hash import Hash
 from ..conversor import Conversor
-from ..api_routes_class import DeleteFilesRoute
+from ..api_routes_class import DeleteFilesRoute, UploadAudioRoute
 
 class Factory(FactoryInterface) :
     def __init__(self) -> None:
@@ -18,7 +18,8 @@ class Factory(FactoryInterface) :
 
             # Routes
 
-            DeleteFilesRoute
+            DeleteFilesRoute,
+            UploadAudioRoute
         )
 
     def get_representative(self, interface: Type[ABC]) -> ABC:
