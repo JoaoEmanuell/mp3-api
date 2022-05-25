@@ -1,4 +1,3 @@
-from flask import request
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from threading import Thread
@@ -10,9 +9,8 @@ from ..interfaces import ConversorInterface, HashInterface
 
 class UploadAudioRoute(UploadAudioRouteInterface) :
 
-    def __init__(self, path: str = None, filename: str = None, file: request = None, conversor: ConversorInterface = None, hash : HashInterface = None) -> None:
+    def __init__(self, path: str = None, file: FileStorage = None, conversor: ConversorInterface = None, hash : HashInterface = None) -> None:
         self.__path = path
-        self.__filename = filename
         self.__file = file
         self.__conversor = conversor
         self.__hash = hash
@@ -21,8 +19,7 @@ class UploadAudioRoute(UploadAudioRouteInterface) :
 
         keys : Tuple[Tuple[str, type]] = (
             ('path', str), 
-            ('filename', str),
-            ('file', request),
+            ('file', FileStorage),
             ('conversor', ConversorInterface),
             ('hash', HashInterface),
         )
@@ -34,18 +31,17 @@ class UploadAudioRoute(UploadAudioRouteInterface) :
     
     def main(self) -> Dict[str, str] :
 
-        file : FileStorage = self.__file.files["file"]
         hash = self.__hash.generate_random_hash()
-        filename = f'{hash}{secure_filename(file.filename)}'
+        self.__filename = f'{hash}{secure_filename(self.__file.filename)}'
 
-        if filename == '' :
+        if self.__filename == '' :
             return {'message' : 'No file selected'}
         
-        file.save(f'{self.__path}{filename}')
+        self.__file.save(f'{self.__path}{self.__filename}')
 
         self.private__start_conversion()
 
-        return {'message' : 'File uploaded successfully', 'hash' : filename}
+        return {'message' : 'Audio uploaded successfully', 'hash' : self.__filename}
 
     def private__start_conversion(self) -> None :
         Thread(target=self.__conversor.convert, args=(f'{self.__path}{self.__filename}',)).start()

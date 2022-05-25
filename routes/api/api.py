@@ -2,8 +2,6 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from pathlib import Path
-from werkzeug.utils import secure_filename
-from threading import Thread
 from json import loads
 from urllib.parse import urlparse
 
@@ -23,32 +21,19 @@ def index() :
 @api.route('/upload/', methods=['POST'])
 def upload_audio() :
     if request.method == 'POST':
+      
+        upload_audio_route : UploadAudioRouteInterface = Fac.get_representative(UploadAudioRouteInterface)()
 
-        file = request.files["file"]
+        upload_audio_route.set_atributes(
+            path = f'{Path().absolute()}/audios/',
+            file = request.files["file"],
+            conversor = Fac.get_representative(ConversorInterface)(),
+            hash = Fac.get_representative(HashInterface)(),
+        )
 
-        path = f'{Path().absolute()}/audios/'
+        response = upload_audio_route.main()
 
-        hash : HashInterface = Fac.get_representative(HashInterface)().generate_random_hash()
-
-        filename = f'{hash}{secure_filename(file.filename)}'
-
-        upload_audio_class : UploadAudioRouteInterface = Fac.get_representative(UploadAudioRouteInterface)()
-
-        if filename == '' :
-            return jsonify({'message' : 'No file selected'})
-
-        else :
-
-            Conversor : ConversorInterface = Fac.get_representative(ConversorInterface)
-
-            upload_audio_class.save_file(path, filename, file)
-
-            upload_audio_class.start_conversion(Conversor, path, filename)
-
-    return jsonify({
-        'message': 'Audio uploaded successfully',
-        'hash' : f'{filename}'
-        })
+        return jsonify(response)
 
 @api.route('/converteds/<filename>')
 def get_converted_audio(filename : str) :

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from flask import request
+from werkzeug.datastructures import FileStorage
 from typing import Dict
 
 from ....source.interfaces import ConversorInterface, HashInterface
@@ -15,8 +16,7 @@ class UploadAudioRouteInterface(ABC) :
     """    
     def __init__(self, 
                 path : str = None, 
-                filename : str = None, 
-                file : request = None, 
+                file : FileStorage = None, 
                 conversor : ConversorInterface = None, 
                 hash : HashInterface = None
                 ) -> None:
