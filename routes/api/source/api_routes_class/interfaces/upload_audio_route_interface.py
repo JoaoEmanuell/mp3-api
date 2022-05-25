@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from flask import request
 from typing import Dict
 
-from ....source.interfaces import ConversorInterface
+from ....source.interfaces import ConversorInterface, HashInterface
 
 class UploadAudioRouteInterface(ABC) :
     """UploadAudioRouteInterface
@@ -17,7 +17,8 @@ class UploadAudioRouteInterface(ABC) :
                 path : str = None, 
                 filename : str = None, 
                 file : request = None, 
-                conversor : ConversorInterface = None
+                conversor : ConversorInterface = None, 
+                hash : HashInterface = None
                 ) -> None:
         """Init
 
@@ -51,7 +52,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def private__start_conversion(self, conversor : ConversorInterface, path : str, filename : str) -> None :
+    def private__start_conversion(self) -> None :
         """start_conversion
 
         Args:
