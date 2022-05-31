@@ -1,9 +1,10 @@
 from sys import path
+from typing import Dict
+from requests import get
 path.append('../../')
 
 from routes.api.source import Factory
 from routes.api.source.api_routes_class.interfaces import GetConvertedAudioRouteInterface
-from routes.api.source.api_routes_class import GetConvertedAudioRoute
 
 def test_answer() :
     fac = Factory()
@@ -26,5 +27,19 @@ def test_answer() :
     # Type
 
     assert type(response) == dict
+
+    # Value
+
     assert response['audio'] == 'http://localhost:5000/static/8d40284ftest.mp3'
     assert response['filename'] == 'test.mp3'
+
+    # App
+
+    response = get('http://localhost:5000/api/converteds/8d40284ftest.mp3')
+
+    json : Dict[str, str] = response.json()
+
+    assert response.status_code == 200
+
+    assert json['audio'] == 'http://localhost:5000/static/8d40284ftest.mp3'
+    assert json['filename'] == 'test.mp3'

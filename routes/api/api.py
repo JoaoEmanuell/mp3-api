@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
 
-from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface
+from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface, GetConvertedAudioRouteInterface
 
 api = Blueprint('api', __name__)
 
@@ -38,13 +38,15 @@ def upload_audio() :
 @api.route('/converteds/<filename>')
 def get_converted_audio(filename : str) :
 
-    url_base = urlparse(request.base_url)[0:2]
-    url_base = f'{url_base[0]}://{url_base[1]}'
+    get_converted_audio_route : GetConvertedAudioRouteInterface = Fac.get_representative(GetConvertedAudioRouteInterface)()
+    get_converted_audio_route.set_atributes(
+        filename = filename,
+        url_base = request.base_url
+    )
 
-    return jsonify({
-        'audio' : f'{url_base}/static/{filename}', 
-        'filename' : f'{filename.rsplit("/")[-1][8:]}'
-    })
+    response = get_converted_audio_route.main()
+
+    return jsonify(response)
 
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
