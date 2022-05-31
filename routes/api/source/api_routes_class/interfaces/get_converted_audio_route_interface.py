@@ -3,7 +3,7 @@ from typing import Dict
 
 class GetConvertedAudioRouteInterface(ABC):
     @abstractmethod
-    def __init__(self, filename : str, url_base : str):
+    def __init__(self, filename : str = None, url_base : str = None):
         """Init
 
         Args:
