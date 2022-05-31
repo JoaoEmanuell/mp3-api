@@ -1,5 +1,5 @@
 '''
-All class must have a method called set_atributes that will set the atributes defined in their init.
+All class must have a method called set_atributes that will set the atributes defined in their init and a function call main.
 
 It must be set through the setattr method of the AtributeClass class.
 '''

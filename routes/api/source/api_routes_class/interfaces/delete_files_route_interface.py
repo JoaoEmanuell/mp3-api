@@ -39,7 +39,7 @@ class DeleteFilesRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def delete_files(self) -> Dict[str, str]:
+    def main(self) -> Dict[str, str]:
         """
         Delete files from the server.
         Claim the private functions : delete json, original file and converted files.

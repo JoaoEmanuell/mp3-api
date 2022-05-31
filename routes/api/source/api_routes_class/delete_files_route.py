@@ -21,7 +21,7 @@ class DeleteFilesRoute(DeleteFilesRouteInterface) :
             if key_tuple[0] in kwargs :
                 AtributeClass.setattr(self, f'__{key_tuple[0]}', kwargs[key_tuple[0]])
 
-    def delete_files(self) -> Dict[str, str] :
+    def main(self) -> Dict[str, str] :
         self.__hash = self.__hash.replace('.mp3', '')
         self.private__delete_converted_file()
         self.private__delete_json()

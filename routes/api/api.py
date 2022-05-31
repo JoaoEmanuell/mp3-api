@@ -73,6 +73,6 @@ def delete_files(hash : str) :
     )()
 
     delete_files_class.set_atributes(hash = hash)
-    response = delete_files_class.delete_files()
+    response = delete_files_class.main()
 
     return jsonify(response)
