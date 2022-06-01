@@ -3,7 +3,6 @@ from flask import jsonify
 from flask import request
 from pathlib import Path
 from json import loads
-from urllib.parse import urlparse
 
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
