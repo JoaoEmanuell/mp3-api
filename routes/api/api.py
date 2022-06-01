@@ -50,21 +50,6 @@ def get_converted_audio(filename : str) :
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
 
-    '''
-
-    try : 
-
-        with open(f'{path}{hash}.json', 'r') as f :
-            file = f.read()
-
-            if file == '':
-                return jsonify({'status' : False})
-            else :
-                return jsonify(loads(file))
-
-    except FileNotFoundError :
-        return jsonify({'status' : False})'''
-
     get_status_file_route : GetStatusFileRouteInterface = Fac.get_representative(GetStatusFileRouteInterface)()
     get_status_file_route.set_atributes(
         path = f'{Path().absolute()}/status/',

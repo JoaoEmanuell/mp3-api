@@ -1,7 +1,8 @@
 from sys import path
 from requests import get
-from typing import Dict
+from typing import Dict, Union
 from pathlib import Path
+from time import sleep
 path.append('../../')
 
 from routes.api.source import Factory
@@ -12,10 +13,12 @@ def test_answer() :
 
     # Class Route
 
+    hash = 'd8d2d2b1Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3' # Insert hash
+
     get_status_file_route : GetStatusFileRouteInterface = fac.get_representative(GetStatusFileRouteInterface)()
     get_status_file_route.set_atributes(
         path = f'{Path().absolute()}/status/',
-        hash = '8d40284ftest.mp3'
+        hash = hash
     )
 
     response = get_status_file_route.main()
@@ -33,12 +36,20 @@ def test_answer() :
     assert response['status'] == False
 
     # App
-    
-    '''response = get('http://localhost:5000/api/status/8d40284ftest.mp3')
 
-    json : Dict[str, str] = response.json()
+    while True :
 
-    assert response.status_code == 200
+        response = get(f'http://localhost:5000/api/status/{hash}')
 
-    assert json['status'] == 'converting'
-    assert json['filename'] == 'test.mp3'''
+        json : Dict[str, Union[str, bool]] = response.json()
+
+        assert response.status_code == 200
+
+        if 'filename' in json :
+
+            assert json['filename'] == hash[8::].replace('.mp3', '')
+
+        if json['status'] == True :
+            break
+
+        sleep(5)
