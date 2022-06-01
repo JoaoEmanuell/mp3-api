@@ -145,7 +145,7 @@ class FFMPEG_AudioWriter:
 def progress_function(filename : str, counter : str, total_chunks : str, status : bool = False) :
     filename = filename.split('/')[-1].replace('.mp3', '')
     data = {
-        "filename" : filename[8:-1],
+        "filename" : filename[8::],
         "current" : counter,
         "total" : total_chunks,
         "status" : status
