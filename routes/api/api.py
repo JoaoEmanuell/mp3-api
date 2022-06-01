@@ -2,7 +2,6 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from pathlib import Path
-from json import loads
 
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
