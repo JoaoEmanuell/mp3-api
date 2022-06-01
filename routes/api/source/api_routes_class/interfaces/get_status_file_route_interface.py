@@ -29,12 +29,12 @@ class GetStatusFileRouteInterface(ABC):
                     'current' : The current status of the conversion.
                     'total' : The total of the conversion.
                 
-                current and total they're used to calculate the progress of the conversion, and update a progress bar.
+                'current' and 'total' they're used to calculate the progress of the conversion, and update a progress bar.
         """        
         raise NotImplementedError()
 
     @abstractmethod
-    def set_atributes(**kwargs) -> None:
+    def set_atributes(self, **kwargs) -> None:
         """
         Set atributes
 

@@ -1,3 +1,4 @@
 from .delete_files_route_interface import DeleteFilesRouteInterface
 from .upload_audio_route_interface import UploadAudioRouteInterface
 from .get_converted_audio_route_interface import GetConvertedAudioRouteInterface
+from .get_status_file_route_interface import GetStatusFileRouteInterface
