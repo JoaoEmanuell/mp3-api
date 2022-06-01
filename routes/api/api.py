@@ -7,7 +7,7 @@ from json import loads
 from .source import Factory
 from .source.interfaces import HashInterface, ConversorInterface
 
-from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface, GetConvertedAudioRouteInterface
+from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface, GetConvertedAudioRouteInterface, GetStatusFileRouteInterface
 
 api = Blueprint('api', __name__)
 
@@ -50,8 +50,7 @@ def get_converted_audio(filename : str) :
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
 
-    path = f'{Path().absolute()}/status/'
-    hash = hash.replace('.mp3', '')
+    '''
 
     try : 
 
@@ -64,7 +63,17 @@ def get_status_file(hash : str) :
                 return jsonify(loads(file))
 
     except FileNotFoundError :
-        return jsonify({'status' : False})
+        return jsonify({'status' : False})'''
+
+    get_status_file_route : GetStatusFileRouteInterface = Fac.get_representative(GetStatusFileRouteInterface)()
+    get_status_file_route.set_atributes(
+        path = f'{Path().absolute()}/status/',
+        hash = hash
+    )
+
+    response = get_status_file_route.main()
+
+    return jsonify(response)
 
 @api.route('/delete/<hash>')
 def delete_files(hash : str) :
