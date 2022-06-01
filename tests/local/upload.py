@@ -1,4 +1,3 @@
-from time import sleep
 from requests import get, post
 
 def upload_audio() -> dict :
