@@ -1,4 +1,4 @@
-# Imports
+# Global Imports
 
 from flask import Flask, redirect
 from tools import Essential
