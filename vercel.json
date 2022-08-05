@@ -3,7 +3,8 @@
     "builds": [
         {
             "src": "./app.py",
-            "use": "@vercel/python"
+            "use": "@vercel/python",
+            "excludeFiles": "public/**"
         }
     ],
     "routes": [
@@ -11,10 +12,6 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ],
-    "functions": {
-        "api/**/*.py": {
-          "excludeFiles": "public/**"
-        }
-  }
+    ]
 }
+
