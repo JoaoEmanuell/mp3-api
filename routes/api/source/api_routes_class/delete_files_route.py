@@ -36,7 +36,7 @@ class DeleteFilesRoute(DeleteFilesRouteInterface) :
 
     def private__delete_json(self) -> None:
         try :
-            remove(f'{self.__path}/status/{self.__hash}.json')
+            remove(f'{self.__path}/status/{self.__hash}.txt')
         except FileNotFoundError :
             return None
 
