@@ -4,7 +4,7 @@ from flask import request
 from pathlib import Path
 
 from .source import Factory
-from .source.interfaces import HashInterface, ConversorInterface
+from .source.interfaces import HashInterface, ConversorInterface, ExtractLogInfosInterface
 
 from .source.api_routes_class.interfaces import DeleteFilesRouteInterface, UploadAudioRouteInterface, GetConvertedAudioRouteInterface, GetStatusFileRouteInterface
 
@@ -48,11 +48,14 @@ def get_converted_audio(filename : str) :
 
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
+    extract_log = Fac.get_representative(ExtractLogInfosInterface)
+    print(extract_log)
 
     get_status_file_route : GetStatusFileRouteInterface = Fac.get_representative(GetStatusFileRouteInterface)()
     get_status_file_route.set_atributes(
         path = f'{Path().absolute()}/status/',
-        hash = hash
+        hash = hash,
+        extract_log=extract_log
     )
 
     response = get_status_file_route.main()

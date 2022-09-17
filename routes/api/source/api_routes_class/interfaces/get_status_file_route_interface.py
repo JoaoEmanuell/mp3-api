@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Union
+from typing import Dict, Union, Type
+from ...interfaces import ExtractLogInfosInterface
 
 class GetStatusFileRouteInterface(ABC):
     @abstractmethod
@@ -7,12 +8,15 @@ class GetStatusFileRouteInterface(ABC):
         self,
         path : str = None,
         hash : str = None,
+        extract_log: Type[ExtractLogInfosInterface]=None
         ) -> None:
         """Init
 
         Args:
             path (str): Path to status json files. Defaults to None.
             hash (str): Hash to json file, provided by upload route. Defaults to None.
+            extract_log (Type[ExtractLogInfosInterface]):
+                Extract log to ffmpeg log file
 
         """        
         raise NotImplementedError()

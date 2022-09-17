@@ -1,3 +1,4 @@
+from time import sleep
 from typing import Dict, Type
 from regex import search, compile
 from os.path import basename
@@ -33,10 +34,15 @@ class ExtractLogInfos(ExtractLogInfosInterface):
         with open(self.__log_name, 'r') as f:
             file = f.readlines()
             for line in file:
-                if search(hertz_regex, line):
-                    bitrate_str_pos = search(bitrate_regex, line).span()
-                    bitrate_str = \
-                        line[bitrate_str_pos[0]:bitrate_str_pos[1]].replace(' kb/s', '')
+                #if search(hertz_regex, line):
+                if 'bitrate' in line:
+                    bitrate_str_pos = search(bitrate_regex, line)
+                    if bitrate_str_pos == None:
+                        raise self.__error_class('Log Error!')
+                    else:
+                        bitrate_str_pos = bitrate_str_pos.span()
+                        bitrate_str = \
+                            line[bitrate_str_pos[0]:bitrate_str_pos[1]].replace(' kb/s', '')
                     return int(bitrate_str)
 
     def get_current_file_size(self) -> Dict[str, int]:
