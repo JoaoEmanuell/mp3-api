@@ -29,7 +29,6 @@ class ExtractLogInfos(ExtractLogInfosInterface):
 
     def get_bitrate(self) -> int:
         # ... Audio ... 44100 Hz ... 128 kb/s...
-        hertz_regex = compile(r'([0-9]{5} Hz)')
         bitrate_regex = compile(r'([0-9]{3} kb\/s)') # Regex to extract bitrate
         with open(self.__log_name, 'r') as f:
             file = f.readlines()

@@ -17,22 +17,6 @@ class GetStatusFileRoute(GetStatusFileRouteInterface) :
         self.__hash = hash
         self.__extract_log = extract_log
     
-    '''def main(self) -> Dict[str, Union[str, bool]]:
-        hash = self.__hash.replace('.mp3', '')
-
-        try : 
-
-            with open(f'{self.__path}{hash}.json', 'r') as f :
-                file = f.read()
-
-                if file == '':
-                    return {'status' : False}
-                else :
-                    return dict(loads(file))
-
-        except FileNotFoundError :
-            return {'status' : False}'''
-    
     def main(self) -> Dict[str, Union[str, bool]]:
         hash = self.__hash.replace('.mp3', '')
         extract_log = self.__extract_log(
