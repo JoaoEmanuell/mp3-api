@@ -1,1 +1,1 @@
-from .conversor import Conversor
+from .conversor import Conversor, ConversorFfmpeg
