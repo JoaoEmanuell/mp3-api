@@ -1,5 +1,5 @@
-from .download import download_file, save_file
-from .upload import upload_main, get_status
+from download import download_file, save_file
+from upload import upload_main, get_status
 from time import sleep
 from requests import get
 
