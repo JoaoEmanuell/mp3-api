@@ -4,7 +4,7 @@ from os.path import basename
 
 from ...interfaces import ExtractLogInfosInterface
 
-class Extract_Log_Infos(ExtractLogInfosInterface):
+class ExtractLogInfos(ExtractLogInfosInterface):
     def __init__(self, log_path: str, error_class: Type[Exception]) -> None:
         self.__log_name = log_path
         self.__error_class = error_class
