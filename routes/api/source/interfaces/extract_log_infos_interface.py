@@ -28,6 +28,10 @@ class ExtractLogInfosInterface(ABC):
     def get_bitrate(self) -> int:
         """Get bitrate
 
+        Raises:
+            ExtractLogInfosErrosInterface: 
+                "Log Error!" case the bitrate not found.
+
         Returns:
             int: bitrate in kilobits per second.
         """
@@ -59,6 +63,10 @@ class ExtractLogInfosInterface(ABC):
     @abstractmethod
     def get_filename(self) -> str:
         """Get filename
+
+        Raises:
+            ExtractLogInfosErrosInterface: 
+                "Log Error!" case the filename not found.
 
         Returns:
             str: Filename from file

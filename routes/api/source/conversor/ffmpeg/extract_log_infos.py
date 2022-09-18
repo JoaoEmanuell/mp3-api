@@ -78,5 +78,7 @@ class ExtractLogInfos(ExtractLogInfosInterface):
             for line in file:
                 if 'Output' in line:
                     pos = search(filename_regex, line).span()
+                    if pos == None:
+                        raise self.__error_class('Log Error!')
                     filename = line[pos[0] : pos[1]]
                     return basename(filename) # Remove path and return filename
