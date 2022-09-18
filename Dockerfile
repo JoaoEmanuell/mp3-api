@@ -4,11 +4,8 @@ WORKDIR /app
 COPY . /app
 
 # Python
-# Numpy installation
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
-# RUN apk --no-cache add musl-dev linux-headers g++
-# RUN pip3 install numpy==1.22.3 # This process is slower
 
 RUN pip3 --no-cache-dir install -r requirements.txt
 
@@ -17,7 +14,6 @@ RUN pip3 --no-cache-dir install -r requirements.txt
 RUN apk add --no-cache ffmpeg
 
 # Bash
-
 
 RUN apk add --no-cache --upgrade bash
 
