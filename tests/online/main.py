@@ -25,7 +25,7 @@ def main():
 
     print("Downloading...")
 
-    file_url = get(f"https://joaoemanuellmp3api.herokuapp.com/api/converteds/{hash}").json()
+    file_url = get(f"https://joaoemanuellmp3api.fly.dev/api/converteds/{hash}").json()
     file = download_file(file_url['audio'])
     save_file(file_url['filename'], 'audios' , file)
 

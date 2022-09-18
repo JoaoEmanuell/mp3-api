@@ -11,7 +11,7 @@ def download_file(url : str) -> bytes:
     return page
 
 if __name__ == '__main__' :
-    r = get('https://joaoemanuellmp3api.herokuapp.com/api/converteds/Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3').json()
+    r = get('https://joaoemanuellmp3api.fly.dev/api/converteds/Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3').json()
     print(r)
     file = download_file(r['audio'])
     save_file(r['filename'], 'audios' , file)
