@@ -3,15 +3,15 @@ from os.path import join, basename
 from pathlib import Path
 from multiprocessing import Process
 
-from .moviepy import AudioFileClip
+#from .moviepy import AudioFileClip
 from ..interfaces import ConversorInterface
 
-class Conversor(ConversorInterface):
+'''class Conversor(ConversorInterface):
     @classmethod
     def convert(cls, audio : str) -> None:
         clip = AudioFileClip(audio)
         filename = audio.split("/")[-1].replace(".mp3", "")
-        clip.write_audiofile(f'{Path().absolute()}/static/{filename}.mp3')
+        clip.write_audiofile(f'{Path().absolute()}/static/{filename}.mp3')'''
 
 class ConversorFfmpeg(ConversorInterface):
     @classmethod
