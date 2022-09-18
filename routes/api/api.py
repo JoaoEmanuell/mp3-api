@@ -49,7 +49,6 @@ def get_converted_audio(filename : str) :
 @api.route('/status/<hash>')
 def get_status_file(hash : str) :
     extract_log = Fac.get_representative(ExtractLogInfosInterface)
-    print(extract_log)
 
     get_status_file_route : GetStatusFileRouteInterface = Fac.get_representative(GetStatusFileRouteInterface)()
     get_status_file_route.set_atributes(

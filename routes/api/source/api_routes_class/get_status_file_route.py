@@ -1,5 +1,4 @@
 from typing import Tuple, Dict, Union, Type
-from json import loads
 from os.path import join
 
 from .interfaces import GetStatusFileRouteInterface
@@ -26,9 +25,7 @@ class GetStatusFileRoute(GetStatusFileRouteInterface) :
 
         try:
             filename = extract_log.get_filename()[8::]
-            print(filename)
             estimated_file_size = extract_log.get_estimated_file_size()
-            print(estimated_file_size)
             current_file_size = extract_log.get_current_file_size()
             
             if 'completed' in current_file_size:

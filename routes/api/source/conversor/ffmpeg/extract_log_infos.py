@@ -1,7 +1,7 @@
-from time import sleep
 from typing import Dict, Type
-from regex import search, compile
 from os.path import basename
+
+from regex import search, compile
 
 from ...interfaces import ExtractLogInfosInterface
 
@@ -26,6 +26,7 @@ class ExtractLogInfos(ExtractLogInfosInterface):
                     second = int(duration[2])
                     seconds = hour + minute + second
                     return seconds
+            return 1
 
     def get_bitrate(self) -> int:
         # ... Audio ... 44100 Hz ... 128 kb/s...
@@ -43,6 +44,7 @@ class ExtractLogInfos(ExtractLogInfosInterface):
                         bitrate_str = \
                             line[bitrate_str_pos[0]:bitrate_str_pos[1]].replace(' kb/s', '')
                     return int(bitrate_str)
+        return 128
 
     def get_current_file_size(self) -> Dict[str, int]:
         total_file_size_regex = compile(r'(?<=(audio:))(.*)(?=(kBs))')
@@ -66,7 +68,7 @@ class ExtractLogInfos(ExtractLogInfosInterface):
                     pos = search(regex, last_line).span()
                     size = int(last_line[pos[0]:pos[1]])
                     return {message: size}
-            raise self.__error_class('Log Error!')
+        raise self.__error_class('Log Error!')
         
     def get_estimated_file_size(self) -> int:
         return int((self.__seconds * self.__bitrate) / 8)
@@ -82,3 +84,4 @@ class ExtractLogInfos(ExtractLogInfosInterface):
                         raise self.__error_class('Log Error!')
                     filename = line[pos[0] : pos[1]]
                     return basename(filename) # Remove path and return filename
+        raise self.__error_class('Log Error!')
