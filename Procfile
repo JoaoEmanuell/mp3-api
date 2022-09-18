@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn joaoemanuellmp3api:app

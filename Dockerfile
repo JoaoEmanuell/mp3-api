@@ -17,5 +17,6 @@ RUN apk add --no-cache ffmpeg
 
 RUN apk add --no-cache --upgrade bash
 
-ENTRYPOINT [ "python3" , "-m" ]
-CMD [ "flask", "run", "--host=0.0.0.0" ]
+ENTRYPOINT [ "flask" ]
+
+CMD [ "run", "--host", "0.0.0.0", "--port", "8080" ]
