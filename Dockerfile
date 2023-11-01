@@ -17,6 +17,8 @@ RUN apk add --no-cache ffmpeg
 
 RUN apk add --no-cache --upgrade bash
 
+EXPOSE 8080
+
 ENTRYPOINT [ "flask" ]
 
 CMD [ "run", "--host", "0.0.0.0", "--port", "8080" ]
