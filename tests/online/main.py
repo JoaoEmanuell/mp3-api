@@ -1,4 +1,3 @@
-from requests import request
 from download import download_file, save_file
 from upload import upload_main, get_status
 from time import sleep
@@ -25,10 +24,11 @@ def main():
 
     print("Downloading...")
 
-    file_url = get(f"https://joaoemanuellmp3api.fly.dev/api/converteds/{hash}").json()
+    file_url = get(f"https://mp3-api.onrender.com/api/converteds/{hash}").json()
     file = download_file(file_url['audio'])
     save_file(file_url['filename'], 'audios' , file)
 
     print("Downloaded")
 
-main()
+if __name__ == '__main__':
+    main()

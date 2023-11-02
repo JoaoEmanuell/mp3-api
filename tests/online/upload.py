@@ -1,14 +1,14 @@
 from requests import get, post
 
 def upload_audio() -> dict :
-    audio = '/home/emanuel/Música/Outros/Rap do The Last of Us 2 - SE EU TE PERDER  Ft Amanda Areia.mp3'
-    url = 'https://joaoemanuellmp3api.fly.dev/api/upload/'
+    audio = './audios/Rap_do_The_Last_of_Us_2_-_SE_EU_TE_PERDER_Ft_Amanda_Areia.mp3'
+    url = 'https://mp3-api.onrender.com/api/upload/'
     files = {'file': open(audio, 'rb')}
     r : dict = post(url, files=files).json()
     return r
 
 def get_status(hash : str) -> dict : 
-    url = 'https://joaoemanuellmp3api.fly.dev/api/status/'
+    url = 'https://mp3-api.onrender.com/api/status/'
     r : dict = get(f'{url}{hash}').json()
     return r
 
