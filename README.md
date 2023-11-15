@@ -1,4 +1,4 @@
 # mp3-api
 A api to convert a mpeg-4 aac codec to mp3 codec
 
-[Click to acess](https://joaoemanuellmp3api2.herokuapp.com/api/)
+[Docker image](https://hub.docker.com/repository/docker/joaoemanuell/mp3-api/general)
