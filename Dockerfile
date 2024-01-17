@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.11-alpine3.15
 
 WORKDIR /app
 COPY . /app
@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 RUN pip3 --no-cache-dir install -r requirements.txt
 
-# Ffmpeg
+# Ffmpeg version 4.4.1
 
 RUN apk add --no-cache ffmpeg
 
