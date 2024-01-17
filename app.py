@@ -9,11 +9,13 @@ app = Flask(__name__)
 
 from routes import api
 
-app.register_blueprint(api, url_prefix='/api/')
+app.register_blueprint(api, url_prefix="/api/")
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return redirect('/api/')
+    return redirect("/api/")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=False)
