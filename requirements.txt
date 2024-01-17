@@ -20,5 +20,5 @@ regex==2022.9.13
 requests==2.31.0
 tomli==2.0.1
 urllib3==1.26.18
-Werkzeug==3.0.0
+Werkzeug==3.0.1
 zipp==3.8.0
