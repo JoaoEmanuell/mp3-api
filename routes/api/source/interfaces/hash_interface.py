@@ -1,6 +1,7 @@
 from abc import ABC, abstractclassmethod
 
-class HashInterface(ABC) :
+
+class HashInterface(ABC):
     """
 
     Hash Interface from generate hash
@@ -10,9 +11,10 @@ class HashInterface(ABC) :
 
     Raises:
         NotImplementedError: _description_
-    """    
+    """
+
     @abstractclassmethod
-    def generate_random_hash(cls) -> str :
+    def generate_random_hash(cls) -> str:
         """_summary_
 
         Raises:
@@ -20,5 +22,5 @@ class HashInterface(ABC) :
 
         Returns:
             str: hash generated with a datetime * a random number, this hash has 8 characters
-        """        
+        """
         raise NotImplementedError

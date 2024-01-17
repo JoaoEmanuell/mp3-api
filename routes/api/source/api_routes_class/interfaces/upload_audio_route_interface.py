@@ -5,7 +5,8 @@ from typing import Dict
 
 from ....source.interfaces import ConversorInterface, HashInterface
 
-class UploadAudioRouteInterface(ABC) :
+
+class UploadAudioRouteInterface(ABC):
     """UploadAudioRouteInterface
 
     Args:
@@ -13,13 +14,15 @@ class UploadAudioRouteInterface(ABC) :
 
     Raises:
         NotImplementedError: NotImplementedError
-    """    
-    def __init__(self, 
-                path : str = None, 
-                file : FileStorage = None, 
-                conversor : ConversorInterface = None, 
-                hash : HashInterface = None
-                ) -> None:
+    """
+
+    def __init__(
+        self,
+        path: str = None,
+        file: FileStorage = None,
+        conversor: ConversorInterface = None,
+        hash: HashInterface = None,
+    ) -> None:
         """Init
 
         Args:
@@ -34,7 +37,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def set_atributes(self, **kwargs) -> None :
+    def set_atributes(self, **kwargs) -> None:
         """set_atributes
 
         Raises:
@@ -43,7 +46,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def main(self) -> Dict[str, str] :
+    def main(self) -> Dict[str, str]:
         """main method
 
         Raises:
@@ -52,7 +55,7 @@ class UploadAudioRouteInterface(ABC) :
         raise NotImplementedError()
 
     @abstractmethod
-    def private__start_conversion(self) -> None :
+    def private__start_conversion(self) -> None:
         """start_conversion
 
         Args:
@@ -61,5 +64,5 @@ class UploadAudioRouteInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()

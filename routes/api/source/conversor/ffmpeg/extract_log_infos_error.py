@@ -1,9 +1,9 @@
 class ExtractLogInfosError(Exception):
-    def __init__(self, message: str='Extract Log Infos Error') -> None:
+    def __init__(self, message: str = "Extract Log Infos Error") -> None:
         """Init
 
         Args:
-            message (str, optional): 
+            message (str, optional):
                 Error message. Defaults to 'Extract Log Infos Error'.
 
         """

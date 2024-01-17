@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Dict
 
-class DeleteFilesRouteInterface(ABC) :
+
+class DeleteFilesRouteInterface(ABC):
     """
     This class is an interface for the DeleteFilesRoute class.
 
@@ -10,10 +11,10 @@ class DeleteFilesRouteInterface(ABC) :
 
     Raises:
         NotImplementedError : NotImplementedError
-    """    
+    """
 
     @abstractmethod
-    def __init__(self, hash : str = None) -> None :
+    def __init__(self, hash: str = None) -> None:
         """
         Initialize the class
 
@@ -22,10 +23,10 @@ class DeleteFilesRouteInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()
 
-    def set_atributes(self, **kwargs) -> None :
+    def set_atributes(self, **kwargs) -> None:
         """
         Set atributes
 
@@ -35,7 +36,7 @@ class DeleteFilesRouteInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -46,35 +47,35 @@ class DeleteFilesRouteInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
-    def private__delete_json(self) -> None :
+    def private__delete_json(self) -> None:
         """
         Delete json file from the server.
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
-    def private__delete_original_file(self) -> None :
+    def private__delete_original_file(self) -> None:
         """
         Delete original file from the server.
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
-    def private__delete_converted_file(self) -> None :
+    def private__delete_converted_file(self) -> None:
         """
         Delete converted file from the server.
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
         raise NotImplementedError()

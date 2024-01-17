@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Type
 
+
 class ExtractLogInfosInterface(ABC):
     """Extract data from ffmpeg conversion log"""
 
@@ -12,7 +13,7 @@ class ExtractLogInfosInterface(ABC):
             log_path (str): Path to ffmpeg conversion log
             error_class (Type[Exception]): Error class to raise erros
 
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -29,7 +30,7 @@ class ExtractLogInfosInterface(ABC):
         """Get bitrate
 
         Raises:
-            ExtractLogInfosErrosInterface: 
+            ExtractLogInfosErrosInterface:
                 "Log Error!" case the bitrate not found.
 
         Returns:
@@ -42,13 +43,13 @@ class ExtractLogInfosInterface(ABC):
         """Get current file size
 
         Raises:
-            ExtractLogInfosErrosInterface: 
+            ExtractLogInfosErrosInterface:
                 "Conversion Error!" case conversion error.
                 "Log Error!" case the log is invalid or not data.
 
         Returns:
             Dict[str, int]: {message: size}
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -57,7 +58,7 @@ class ExtractLogInfosInterface(ABC):
 
         Returns:
             int: size in kb
-        """        
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -65,10 +66,10 @@ class ExtractLogInfosInterface(ABC):
         """Get filename
 
         Raises:
-            ExtractLogInfosErrosInterface: 
+            ExtractLogInfosErrosInterface:
                 "Log Error!" case the filename not found.
 
         Returns:
             str: Filename from file
-        """        
+        """
         raise NotImplementedError()

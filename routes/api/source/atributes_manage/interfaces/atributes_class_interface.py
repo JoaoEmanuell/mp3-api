@@ -1,6 +1,7 @@
 from abc import ABC, abstractclassmethod
 
-class AtributeClassInterface(ABC) :
+
+class AtributeClassInterface(ABC):
 
     """
     This class is an interface for the AtributeClass.
@@ -11,11 +12,10 @@ class AtributeClassInterface(ABC) :
 
     Raises:
         NotImplementedError: NotImplementedError
-    """    
+    """
 
     @abstractclassmethod
-    def mangle_attribute(cls, source : object, attribute : str) -> str :
-
+    def mangle_attribute(cls, source: object, attribute: str) -> str:
         """
         Mangle the attribute of the source object.
         Unpack the attribute for manage it.
@@ -26,30 +26,28 @@ class AtributeClassInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
-    
+        """
+
         raise NotImplementedError()
 
     @abstractclassmethod
-    def setattr(cls, obj : object, name : str, value : object) -> None :
-
+    def setattr(cls, obj: object, name: str, value: object) -> None:
         """
         Set the attribute of the object.
 
         Args:
             obj (object): Object.
             name (str): Attribute name.
-            value (object): New attribute value.    
+            value (object): New attribute value.
 
         Raises:
             NotImplementedError: NotImplementedError
-        """        
+        """
 
         raise NotImplementedError()
 
     @abstractclassmethod
-    def getattr(cls, obj : object, name : str) -> object :
-
+    def getattr(cls, obj: object, name: str) -> object:
         """
         Get the attribute of the object.
 
@@ -59,13 +57,12 @@ class AtributeClassInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """      
+        """
 
         raise NotImplementedError()
-    
-    @abstractclassmethod
-    def delattr(cls, obj : object, name : str) -> None :
 
+    @abstractclassmethod
+    def delattr(cls, obj: object, name: str) -> None:
         """
         Delete the attribute of the object.
 
@@ -75,13 +72,12 @@ class AtributeClassInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """      
-  
-        raise NotImplementedError()
-    
-    @abstractclassmethod
-    def hasattr(cls, obj : object, name : str) -> bool :
+        """
 
+        raise NotImplementedError()
+
+    @abstractclassmethod
+    def hasattr(cls, obj: object, name: str) -> bool:
         """
         Check if the object has the attribute.
 
@@ -91,7 +87,6 @@ class AtributeClassInterface(ABC) :
 
         Raises:
             NotImplementedError: NotImplementedError
-        """    
+        """
 
         raise NotImplementedError()
-

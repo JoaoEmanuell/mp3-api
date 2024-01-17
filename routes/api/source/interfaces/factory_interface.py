@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
-class FactoryInterface(ABC) :
+
+class FactoryInterface(ABC):
     @abstractmethod
-    def __init__(self) -> None :
+    def __init__(self) -> None:
         raise NotImplementedError
 
-    def get_representative(self, interface : Type[ABC]) -> ABC :
+    def get_representative(self, interface: Type[ABC]) -> ABC:
         raise NotImplementedError
