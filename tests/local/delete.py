@@ -3,7 +3,7 @@ from sys import argv
 
 def test_answer() :
 
-    url = 'http://localhost:5000/api/delete/'
+    url = 'http://localhost:80/api/delete/'
 
     hash = argv[1]
 

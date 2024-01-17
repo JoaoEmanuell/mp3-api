@@ -2,13 +2,13 @@ from requests import get, post
 
 def upload_audio() -> dict :
     audio = '/home/emanuel/Música/Outros/Rap do The Last of Us 2 - SE EU TE PERDER  Ft Amanda Areia.mp3'
-    url = 'http://localhost:5000/api/upload/'
+    url = 'http://localhost:80/api/upload/'
     files = {'file': open(audio, 'rb')}
     r : dict = post(url, files=files).json()
     return r
 
 def get_status(hash : str) -> dict : 
-    url = 'http://localhost:5000/api/status/'
+    url = 'http://localhost:80/api/status/'
     r : dict = get(f'{url}{hash}').json()
     return r
 

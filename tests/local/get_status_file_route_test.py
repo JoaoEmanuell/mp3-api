@@ -39,7 +39,7 @@ def test_answer() :
 
     while True :
 
-        response = get(f'http://localhost:5000/api/status/{hash}')
+        response = get(f'http://localhost:80/api/status/{hash}')
 
         json : Dict[str, Union[str, bool]] = response.json()
 

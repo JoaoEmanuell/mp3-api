@@ -13,7 +13,7 @@ def test_answer() :
     get_converted_audio_route : GetConvertedAudioRouteInterface = fac.get_representative(GetConvertedAudioRouteInterface)()
     get_converted_audio_route.set_atributes(
         filename = '8d40284ftest.mp3', 
-        url_base = 'http://localhost:5000'
+        url_base = 'http://localhost:80'
         )
 
     response = get_converted_audio_route.main()
@@ -30,16 +30,16 @@ def test_answer() :
 
     # Value
 
-    assert response['audio'] == 'http://localhost:5000/static/8d40284ftest.mp3'
+    assert response['audio'] == 'http://localhost:80/static/8d40284ftest.mp3'
     assert response['filename'] == 'test.mp3'
 
     # App
 
-    response = get('http://localhost:5000/api/converteds/8d40284ftest.mp3')
+    response = get('http://localhost:80/api/converteds/8d40284ftest.mp3')
 
     json : Dict[str, str] = response.json()
 
     assert response.status_code == 200
 
-    assert json['audio'] == 'http://localhost:5000/static/8d40284ftest.mp3'
+    assert json['audio'] == 'http://localhost:80/static/8d40284ftest.mp3'
     assert json['filename'] == 'test.mp3'

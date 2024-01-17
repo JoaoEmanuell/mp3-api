@@ -24,7 +24,7 @@ def main():
 
     print("Downloading...")
 
-    file_url = get(f"http://127.0.0.1:5000/api/converteds/{hash}").json()
+    file_url = get(f"http://localhost:80/api/converteds/{hash}").json()
     file = download_file(file_url['audio'])
     save_file(file_url['filename'], 'audios' , file)
 
